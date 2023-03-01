@@ -52,4 +52,30 @@ class FeldTest {
         assertThat(f.Feld[0][3]).isNull();
 
     }
+    @Test
+    @DisplayName("Move King to 1,3 then to 2,3")
+    void moveKing_1(){
+        Feld f = new Feld();
+        f.init();
+        f.move(0,4,1,3);
+        f.move(1,3,2,3);
+
+
+        assertThat(f.Feld[2][3].type).isEqualTo(Figur.KING);
+        assertThat(f.Feld[0][4]).isNull();
+
+    }
+    @Test
+    @DisplayName("Move Pawn 2 to 3,1 then to 4,1")
+    void movePawn_1(){
+        Feld f = new Feld();
+        f.init();
+        f.move(1,1,3,1);
+        f.move(3,1,4,1);
+
+
+        assertThat(f.Feld[4][1].type).isEqualTo(Figur.PAWN);
+        assertThat(f.Feld[1][1]).isNull();
+
+    }
 }
