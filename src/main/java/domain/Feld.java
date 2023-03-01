@@ -24,8 +24,19 @@ public class Feld {
     }//Maybe in einer Hashmap speichern ? mit positionen oder wie dursuchen
     public void move(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
         if(feldhorizontal<Feld.length && feldvertikal<Feld[0].length) {
-           Feld[feldhorizontal][feldvertikal] = Feld[altesfeldhorinzontal][altesfeldvertikal];
-           Feld[altesfeldhorinzontal][altesfeldvertikal] = null;
+            if(checkLegalmove(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal)){
+                Feld[feldhorizontal][feldvertikal] = Feld[altesfeldhorinzontal][altesfeldvertikal];
+                Feld[altesfeldhorinzontal][altesfeldvertikal] = null;
+            }
+
+        }
+    }
+
+    public boolean checkLegalmove(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
+        switch(Feld[altesfeldhorinzontal][altesfeldvertikal].type){
+            case ROOK : if(altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal) return true;
+            case BISHOP: if(Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)) return true;
+            default : return false;
         }
     }
 }
