@@ -27,5 +27,16 @@ class FeldTest {
         assertThat(f.Feld[5][7].type).isEqualTo(Figur.BISHOP);
         assertThat(f.Feld[0][2]).isNull();
     }
+    @Test
+    @DisplayName("Move Knight to 2,0 then to 3,2")
+    void moveKnight_1(){
+        Feld f = new Feld();
+        f.init();
+        f.move(0,1,2,0);
+        f.move(2,0,3,2);
 
+        assertThat(f.Feld[3][2].type).isEqualTo(Figur.KNIGHT);
+        assertThat(f.Feld[0][1]).isNull();
+
+    }
 }
