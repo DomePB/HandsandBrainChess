@@ -37,6 +37,7 @@ public class Feld {
             case ROOK : if(altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal) return true;
             case BISHOP: if(Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)) return true;
             case KNIGHT: if(Math.abs(altesfeldhorinzontal-feldhorizontal) ==2 && Math.abs(altesfeldvertikal-feldvertikal) == 1 || Math.abs(altesfeldhorinzontal -feldhorizontal) ==1 && Math.abs(altesfeldvertikal-feldvertikal)==2)return true;
+            case QUEEN: if(altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal) return true; else if (Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)) return true;
             default : return false;
         }
     }

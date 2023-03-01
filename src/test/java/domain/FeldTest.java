@@ -39,4 +39,17 @@ class FeldTest {
         assertThat(f.Feld[0][1]).isNull();
 
     }
+    @Test
+    @DisplayName("Move Queen to 3,3 then to 4,2")
+    void moveQueen_1(){
+        Feld f = new Feld();
+        f.init();
+        f.move(0,3,3,3);
+        f.move(3,3,4,2);
+
+
+        assertThat(f.Feld[4][2].type).isEqualTo(Figur.QUEEN);
+        assertThat(f.Feld[0][3]).isNull();
+
+    }
 }
