@@ -22,12 +22,10 @@ public class Feld {
         Feld[7][6] = new Figuren(Figur.KNIGHT,"white",true,14);
         Feld[7][7] = new Figuren(Figur.ROOK,"white",true,15);
     }//Maybe in einer Hashmap speichern ? mit positionen oder wie dursuchen
-    public void move(int id,int feldhorizontal, int feldvertikal){
+    public void move(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
         if(feldhorizontal<Feld.length && feldvertikal<Feld[0].length) {
-            switch (id) {
-                case 0:
-
-            }
+           Feld[feldhorizontal][feldvertikal] = Feld[altesfeldhorinzontal][altesfeldvertikal];
+           Feld[altesfeldhorinzontal][altesfeldvertikal] = null;
         }
     }
 }
