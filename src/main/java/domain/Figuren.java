@@ -6,10 +6,15 @@ public class Figuren{
     String team;
     boolean status;
 
-    public Figuren(Figur type, String team, boolean status) {
+    int id;
+
+
+
+    public Figuren(Figur type, String team, boolean status, int id) {
         this.type = type;
         this.team = team;
         this.status = status;
+        this.id = id;
     }
 
     public Figur getType() {
