@@ -8,13 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FeldTest {
 
     @Test
-    @DisplayName("Move Rook to 0,5")
+    @DisplayName("Move Rook to 5,0")
     void moverook_1(){
         Feld f = new Feld();
         f.init();
-        f.move(0,0,0,5);
+        f.move(0,0,5,0);
 
-        assertThat(f.Feld[0][5].type).isEqualTo(Figur.ROOK);
+        assertThat(f.Feld[5][0].type).isEqualTo(Figur.ROOK);
         assertThat(f.Feld[0][0]).isNull();
     }
     @Test

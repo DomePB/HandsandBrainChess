@@ -15,7 +15,7 @@ public class Feld {
         Feld[0][6] = new Figuren(Figur.KNIGHT,"black",true,6);
         Feld[0][7] = new Figuren(Figur.ROOK,"black",true,7);
         //Pawns
-        Feld[1][0] = new Figuren(Figur.PAWN,"black",true,8);
+      //  Feld[1][0] = new Figuren(Figur.PAWN,"black",true,8);
         Feld[1][1] = new Figuren(Figur.PAWN,"black",true,9);
         Feld[1][2] = new Figuren(Figur.PAWN,"black",true,10);
         Feld[1][3] = new Figuren(Figur.PAWN,"black",true,11);
@@ -54,14 +54,49 @@ public class Feld {
 
     public boolean checkLegalmove(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
         switch(Feld[altesfeldhorinzontal][altesfeldvertikal].type){
-            case ROOK : if(altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal) return true;
-            case BISHOP: if(Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)) return true;
+            case ROOK : if(collisionCheckROOK(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal)) return true; else break; //altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal
+            case BISHOP: if(Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)) return true; else break;
             case KNIGHT: if(Math.abs(altesfeldhorinzontal-feldhorizontal) ==2 && Math.abs(altesfeldvertikal-feldvertikal) == 1 || Math.abs(altesfeldhorinzontal -feldhorizontal) ==1 && Math.abs(altesfeldvertikal-feldvertikal)==2)return true;
-            case QUEEN: if(altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal) return true; else if (Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)) return true;
-            case KING: if(Math.abs(altesfeldhorinzontal-feldhorizontal) <=1 && Math.abs(altesfeldvertikal-feldvertikal) <=1 ) return true;
+            case QUEEN: if(altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal) {return true;}
+            else if (Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)) {return true;} else break;
+            case KING: if(Math.abs(altesfeldhorinzontal-feldhorizontal) <=1 && Math.abs(altesfeldvertikal-feldvertikal) <=1 ) return true; else break;
             case PAWN: if(altesfeldhorinzontal == 1 && Feld[altesfeldhorinzontal][altesfeldvertikal].team == "black"){
-                if(Math.abs(altesfeldhorinzontal-feldhorizontal)<=2)return true;} else if ((Math.abs(altesfeldhorinzontal-feldhorizontal)==1)) {return true;} //Pawn kann noch gerade aus schlagen und nicht zur Seite
+                if(Math.abs(altesfeldhorinzontal-feldhorizontal)<=2)return true;} else if ((Math.abs(altesfeldhorinzontal-feldhorizontal)==1)) {return true; }else break; //Pawn kann noch gerade aus schlagen und nicht zur Seite
             default : return false;
+
         }
+        return false;
+    }
+    private boolean collisionCheckROOK(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
+        if(altesfeldhorinzontal == feldhorizontal){
+            if(altesfeldvertikal < feldvertikal){
+                for(int i = altesfeldvertikal+1; i <= feldvertikal; i++){
+                    if(Feld[feldhorizontal][i] != null){
+                        return false;
+                    }
+                }
+            } else if (altesfeldvertikal > feldvertikal) {
+                for(int i = altesfeldvertikal-1; i == feldvertikal; i--){
+                    if(Feld[feldhorizontal][i] != null){
+                        return false;
+                    }
+                }
+            }
+        } else if (altesfeldvertikal == feldvertikal){
+            if (altesfeldhorinzontal < feldhorizontal){
+                for(int i = altesfeldhorinzontal+1; i == feldhorizontal; i++){
+                    if(Feld[i][altesfeldvertikal] != null){
+                        return false;
+                    }
+                }
+            } else if (altesfeldhorinzontal > feldhorizontal) {
+                for(int i = altesfeldhorinzontal-1; i == feldhorizontal; i--){
+                    if(Feld[i][altesfeldvertikal] != null){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
