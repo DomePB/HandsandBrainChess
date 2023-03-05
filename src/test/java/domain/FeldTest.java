@@ -22,10 +22,20 @@ class FeldTest {
     void movebishop_1(){
         Feld f = new Feld();
         f.init();
-        f.move(0,2,5,7);
+        f.move(0,2,2,0);
+
+        assertThat(f.Feld[2][0].type).isEqualTo(Figur.BISHOP);
+        assertThat(f.Feld[0][2]).isNull();
+    }
+    @Test
+    @DisplayName("Move white Bishop to 5,7")
+    void movebishop_2(){
+        Feld f = new Feld();
+        f.init();
+        f.move(7,5,5,7);
 
         assertThat(f.Feld[5][7].type).isEqualTo(Figur.BISHOP);
-        assertThat(f.Feld[0][2]).isNull();
+        assertThat(f.Feld[7][5]).isNull();
     }
     @Test
     @DisplayName("Move Knight to 2,0 then to 3,2")
