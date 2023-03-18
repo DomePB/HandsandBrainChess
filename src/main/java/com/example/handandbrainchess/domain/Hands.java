@@ -1,4 +1,4 @@
-package domain;
+package com.example.handandbrainchess.domain;
 
 public class Hands extends User{
 

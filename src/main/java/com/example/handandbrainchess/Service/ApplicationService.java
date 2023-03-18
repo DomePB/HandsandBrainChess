@@ -1,7 +1,7 @@
-package Service;
+package com.example.handandbrainchess.Service;
 
-import domain.Feld;
-import domain.Figuren;
+import com.example.handandbrainchess.domain.Feld;
+import com.example.handandbrainchess.domain.Figuren;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,4 +17,5 @@ public class ApplicationService {
     public Figuren[][] getFeld(){
         return SpielFeld.getFeld();
     }
+
 }

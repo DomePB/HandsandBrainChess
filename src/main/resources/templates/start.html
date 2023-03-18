@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Hands and Brain Chess
+<table>
+    <tr th:each="row: ${Feld}">
+        <td th:each="Figuren:${row}">
+            <span th:switch="${Figuren}">
+                <span th:case="null">
+                    null
+                </span>
+                <span th:case="*">
+                       <span th:text="${Figuren.getType().toString()}"> test </span>
+                </span>
+            </span>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>

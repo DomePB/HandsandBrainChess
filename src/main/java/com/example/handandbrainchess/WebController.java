@@ -1,7 +1,6 @@
-package web.controller;
+package com.example.handandbrainchess;
 
-import Service.ApplicationService;
-import domain.Feld;
+import com.example.handandbrainchess.Service.ApplicationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +16,7 @@ public class WebController {
 
     @GetMapping("/")
     public String index(Model m){
+        service.init();
         m.addAttribute("Feld",service.getFeld());
         return "start";
     }
