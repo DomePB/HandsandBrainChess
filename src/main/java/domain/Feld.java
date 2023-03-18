@@ -53,14 +53,14 @@ public class Feld {
     }
 
     public boolean checkLegalmove(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
-        switch(Feld[altesfeldhorinzontal][altesfeldvertikal].type){
+        switch(Feld[altesfeldhorinzontal][altesfeldvertikal].getType()){
             case ROOK : if(collisionCheckROOK(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal)) return true; else break; //altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal
             case BISHOP: if(collisionCheckBISHOP(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal)) return true; else break;
             case KNIGHT: if(Math.abs(altesfeldhorinzontal-feldhorizontal) ==2 && Math.abs(altesfeldvertikal-feldvertikal) == 1 || Math.abs(altesfeldhorinzontal -feldhorizontal) ==1 && Math.abs(altesfeldvertikal-feldvertikal)==2)return true;
             case QUEEN: if(altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal) {if(collisionCheckROOK(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal)) return true;}
             else if (Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)) {if(collisionCheckBISHOP(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal))return true;} else break;
             case KING: if(Math.abs(altesfeldhorinzontal-feldhorizontal) <=1 && Math.abs(altesfeldvertikal-feldvertikal) <=1 ) return true; else break;
-            case PAWN: if(collisionCheckPawn(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal,Feld[altesfeldhorinzontal][altesfeldvertikal].team)){return true;} else break; //Pawn kann noch gerade aus schlagen und nicht zur Seite
+            case PAWN: if(collisionCheckPawn(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal,Feld[altesfeldhorinzontal][altesfeldvertikal].getTeam())){return true;} else break; //Pawn kann noch gerade aus schlagen und nicht zur Seite
             default : return false;
 
         }
@@ -160,4 +160,10 @@ public class Feld {
         return true;
     }
 
+    public  Figuren getPosition(int row, int column) {
+        return Feld[row][column];
+    }
+    public Figuren[][] getFeld(){
+        return Feld;
+    }
 }
