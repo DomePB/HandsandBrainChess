@@ -1,2 +1,2 @@
 # HandsandBrainChess
-Movement Done but no Collision Test and no Pawn Takes or en peasant
+Pawn Movement has to be fixed also no end field check i think
