@@ -2,11 +2,11 @@ package domain;
 
 public class Figuren{
 
-    Figur type;
-    String team;
+    final Figur type;
+    final String team;
     boolean status;
 
-    int id;
+    final int id;
 
 
 
@@ -21,16 +21,8 @@ public class Figuren{
         return type;
     }
 
-    public void setType(Figur type) {
-        this.type = type;
-    }
-
     public String getTeam() {
         return team;
-    }
-
-    public void setTeam(String team) {
-        this.team = team;
     }
 
     public boolean isStatus() {
@@ -39,5 +31,12 @@ public class Figuren{
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public boolean EqualTeam(Figuren f){
+        if(this.team.equals(f.team)){
+            return true;
+        }
+        return false;
     }
 }

@@ -96,6 +96,9 @@ public class Feld {
                 }
             }
         }
+        if(Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(Feld[feldhorizontal][feldvertikal])){
+            return false;
+        }
         return true;
     }
     private boolean collisionCheckBISHOP(int altesfeldhorinzontal, int altesfeldvertikal, int feldhorizontal, int feldvertikal){
@@ -132,6 +135,9 @@ public class Feld {
                     }
                 }
             }
+        }
+        if(Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(Feld[feldhorizontal][feldvertikal])){
+            return false;
         }
         return true;
     }
