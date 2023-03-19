@@ -8,15 +8,22 @@
 <body>
 Hands and Brain Chess
 <table class="table table-striped table-striped-columns">
-    <tr th:each="row: ${Feld}">
-        <td th:each="Figuren:${row}">
+    <tr th:each="row, i: ${Feld}">
+        <td th:each="Figuren, j:${row}">
             <span th:switch="${Figuren}">
+            <a th:href="@{/move(idrow=${i.index},idcolumn=${j.index})}">
                 <span th:case="null">
                     null
                 </span>
+
                 <span th:case="*">
-                       <span th:text="${Figuren.getType().toString()}"> test </span>
+
+                    <span th:text="${Figuren.getType().toString()}">
+                        test
+                    </span>
+
                 </span>
+            </a>
             </span>
 
         </td>

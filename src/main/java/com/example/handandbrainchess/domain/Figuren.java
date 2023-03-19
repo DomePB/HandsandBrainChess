@@ -25,6 +25,10 @@ public class Figuren{
         return team;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public boolean isStatus() {
         return status;
     }
