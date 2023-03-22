@@ -146,23 +146,29 @@ public class Feld {
         }
         return true;
     }
-    private boolean collisionCheckPawn(int altesfeldhorinzontal, int altesfeldvertikal, int feldhorizontal, int feldvertikal, String team){
-        if(Feld[feldhorizontal][feldvertikal] == null){
-            return true;
-        }
-        if(Feld[altesfeldhorinzontal][altesfeldvertikal].team == "white"){
-            if(Feld[feldhorizontal-1][feldvertikal+1].team == "black" || Feld[feldhorizontal-1][feldvertikal-1].team == "black"){
-                return true;
-            }
+    private boolean collisionCheckPawn(int altesfeldhorinzontal, int altesfeldvertikal, int feldhorizontal, int feldvertikal, String team) {
+        if (Math.abs(altesfeldhorinzontal - feldhorizontal) == 1) {
+          if (Feld[feldhorizontal][feldvertikal] == null) {
+             return true;
+           }
+            if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "white") {
+             if (Feld[feldhorizontal - 1][feldvertikal + 1].team == "black" ||
+                      Feld[feldhorizontal - 1][feldvertikal - 1].team == "black") {
+                 return true;
+               }
 
-        }
-        if(Feld[altesfeldhorinzontal][altesfeldvertikal].team == "black") {
-            if (Feld[feldhorizontal + 1][feldvertikal + 1].team == "white" ||
-                    Feld[feldhorizontal + 1][feldvertikal - 1].team == "white") {
-                return true;
             }
-        }
+          if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "black") {
+             if (Feld[feldhorizontal ][feldvertikal + 1].team == "white" ||// null check muss noch gemacht werden
+                      Feld[feldhorizontal][feldvertikal - 1].team == "white") {// null check muss noch gemacht werden
+                 return true;
+              }
+         }
         return true;
+    }
+        else {//2 Moves von Start
+            return false;
+        }
     }
 
     public  Figuren getPosition(int row, int column) {
