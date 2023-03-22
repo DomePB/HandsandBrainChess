@@ -122,14 +122,14 @@ public class Feld {
                 }
             } else { //altesfeldhorinzontal > feldhorizontal
                 if (altesfeldvertikal < feldvertikal) {
-                    for (int i =  1; altesfeldhorinzontal-i < feldhorizontal; i++) {
+                    for (int i =  1; altesfeldhorinzontal-i > feldhorizontal; i++) {
                         if (Feld[altesfeldhorinzontal - i][altesfeldvertikal + i] != null) {
                             return false;
                         }
                     }
                 }else {//altesfeldvertikal > feldvertikal
-                    if (altesfeldvertikal < feldvertikal) {
-                        for (int i = 1; altesfeldhorinzontal-i < feldhorizontal; i++) {
+                    if (altesfeldvertikal > feldvertikal) {
+                        for (int i = 1; altesfeldhorinzontal-i > feldhorizontal; i++) {
                             if (Feld[altesfeldhorinzontal - i][altesfeldvertikal - i] != null) {
                                 return false;
                             }
@@ -137,14 +137,15 @@ public class Feld {
                     }
                 }
             }
-        }
-        if(Feld[feldhorizontal][feldvertikal]!= null) {
-            if (Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(
-                    Feld[feldhorizontal][feldvertikal])) {
-                return false;
+            if(Feld[feldhorizontal][feldvertikal]!= null) {
+                if (Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(
+                        Feld[feldhorizontal][feldvertikal])) {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
+       return false;
     }
     private boolean collisionCheckPawn(int altesfeldhorinzontal, int altesfeldvertikal, int feldhorizontal, int feldvertikal, String team) {
         if (Math.abs(altesfeldhorinzontal - feldhorizontal) == 1) {
