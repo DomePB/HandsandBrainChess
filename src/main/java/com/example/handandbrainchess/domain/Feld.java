@@ -138,8 +138,11 @@ public class Feld {
                 }
             }
         }
-        if(Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(Feld[feldhorizontal][feldvertikal])){
-            return false;
+        if(Feld[feldhorizontal][feldvertikal]!= null) {
+            if (Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(
+                    Feld[feldhorizontal][feldvertikal])) {
+                return false;
+            }
         }
         return true;
     }
