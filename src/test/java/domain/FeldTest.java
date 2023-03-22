@@ -15,8 +15,8 @@ class FeldTest {
         f.init();
         f.move(0,0,5,0);
 
-        assertThat(f.Feld[5][0].type).isEqualTo(Figur.ROOK);
-        assertThat(f.Feld[0][0]).isNull();
+        assertThat(f.getFeld()[5][0].getType()).isEqualTo(Figur.ROOK);
+        assertThat(f.getFeld()[0][0]).isNull();
     }
     @Test
     @DisplayName("Move Bishop to 2,0")
@@ -25,8 +25,8 @@ class FeldTest {
         f.init();
         f.move(0,2,2,0);
 
-        assertThat(f.Feld[2][0].type).isEqualTo(Figur.BISHOP);
-        assertThat(f.Feld[0][2]).isNull();
+        assertThat(f.getFeld()[2][0].getType()).isEqualTo(Figur.BISHOP);
+        assertThat(f.getFeld()[0][2]).isNull();
     }
     @Test
     @DisplayName("Move white Bishop to 5,7")
@@ -35,8 +35,8 @@ class FeldTest {
         f.init();
         f.move(7,5,5,7);
 
-        assertThat(f.Feld[5][7].type).isEqualTo(Figur.BISHOP);
-        assertThat(f.Feld[7][5]).isNull();
+        assertThat(f.getFeld()[5][7].getType()).isEqualTo(Figur.BISHOP);
+        assertThat(f.getFeld()[7][5]).isNull();
     }
     @Test
     @DisplayName("Move Knight to 2,0 then to 3,2")
@@ -46,8 +46,8 @@ class FeldTest {
         f.move(0,1,2,0);
         f.move(2,0,3,2);
 
-        assertThat(f.Feld[3][2].type).isEqualTo(Figur.KNIGHT);
-        assertThat(f.Feld[0][1]).isNull();
+        assertThat(f.getFeld()[3][2].getType()).isEqualTo(Figur.KNIGHT);
+        assertThat(f.getFeld()[0][1]).isNull();
 
     }
     @Test
@@ -59,8 +59,8 @@ class FeldTest {
         f.move(3,3,4,2);
 
 
-        assertThat(f.Feld[4][2].type).isEqualTo(Figur.QUEEN);
-        assertThat(f.Feld[0][3]).isNull();
+        assertThat(f.getFeld()[4][2].getType()).isEqualTo(Figur.QUEEN);
+        assertThat(f.getFeld()[0][3]).isNull();
 
     }
     @Test
@@ -72,8 +72,8 @@ class FeldTest {
         f.move(1,3,2,3);
 
 
-        assertThat(f.Feld[2][3].type).isEqualTo(Figur.KING);
-        assertThat(f.Feld[0][4]).isNull();
+        assertThat(f.getFeld()[2][3].getType()).isEqualTo(Figur.KING);
+        assertThat(f.getFeld()[0][4]).isNull();
 
     }
     @Test
@@ -85,8 +85,8 @@ class FeldTest {
         f.move(3,1,4,1);
 
 
-        assertThat(f.Feld[4][1].type).isEqualTo(Figur.PAWN);
-        assertThat(f.Feld[1][1]).isNull();
+        assertThat(f.getFeld()[4][1].getType()).isEqualTo(Figur.PAWN);
+        assertThat(f.getFeld()[1][1]).isNull();
 
     }
 }

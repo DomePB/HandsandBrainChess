@@ -17,5 +17,7 @@ public class ApplicationService {
     public Figuren[][] getFeld(){
         return SpielFeld.getFeld();
     }
-
+    public void move(int row, int column, int newrow, int newcolumn){
+        SpielFeld.move(row,column, newrow,newcolumn);
+    }
 }

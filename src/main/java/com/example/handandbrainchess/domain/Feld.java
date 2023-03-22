@@ -89,15 +89,17 @@ public class Feld {
                     }
                 }
             } else if (altesfeldhorinzontal > feldhorizontal) {
-                for(int i = altesfeldhorinzontal-1; i == feldhorizontal; i--){
+                for(int i = altesfeldhorinzontal-1; i > feldhorizontal; i--){
                     if(Feld[i][altesfeldvertikal] != null){
                         return false;
                     }
                 }
             }
         }
-        if(Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(Feld[feldhorizontal][feldvertikal])){
-            return false;
+        if(Feld[feldhorizontal][feldvertikal]!= null){
+            if(Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(Feld[feldhorizontal][feldvertikal])){
+                return false;
+            }
         }
         return true;
     }
@@ -142,8 +144,8 @@ public class Feld {
         return true;
     }
     private boolean collisionCheckPawn(int altesfeldhorinzontal, int altesfeldvertikal, int feldhorizontal, int feldvertikal, String team){
-        if(Feld[feldhorizontal][feldvertikal] != null){
-            return false;
+        if(Feld[feldhorizontal][feldvertikal] == null){
+            return true;
         }
         if(Feld[altesfeldhorinzontal][altesfeldvertikal].team == "white"){
             if(Feld[feldhorizontal-1][feldvertikal+1].team == "black" || Feld[feldhorizontal-1][feldvertikal-1].team == "black"){
