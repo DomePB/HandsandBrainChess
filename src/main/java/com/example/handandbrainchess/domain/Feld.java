@@ -33,14 +33,14 @@ public class Feld {
         Feld[7][6] = new Figuren(Figur.KNIGHT,"white",true,22);
         Feld[7][7] = new Figuren(Figur.ROOK,"white",true,23);
         //Pawns
-        Feld[6][0] = new Figuren(Figur.PAWN,"black",true,24);
-        Feld[6][1] = new Figuren(Figur.PAWN,"black",true,25);
-        Feld[6][2] = new Figuren(Figur.PAWN,"black",true,26);
-        Feld[6][3] = new Figuren(Figur.PAWN,"black",true,27);
-        Feld[6][4] = new Figuren(Figur.PAWN,"black",true,28);
-        Feld[6][5] = new Figuren(Figur.PAWN,"black",true,29);
-        Feld[6][6] = new Figuren(Figur.PAWN,"black",true,30);
-        Feld[6][7] = new Figuren(Figur.PAWN,"black",true,31);
+        Feld[6][0] = new Figuren(Figur.PAWN,"white",true,24);
+        Feld[6][1] = new Figuren(Figur.PAWN,"white",true,25);
+        Feld[6][2] = new Figuren(Figur.PAWN,"white",true,26);
+        Feld[6][3] = new Figuren(Figur.PAWN,"white",true,27);
+        Feld[6][4] = new Figuren(Figur.PAWN,"white",true,28);
+        Feld[6][5] = new Figuren(Figur.PAWN,"white",true,29);
+        Feld[6][6] = new Figuren(Figur.PAWN,"white",true,30);
+        Feld[6][7] = new Figuren(Figur.PAWN,"white",true,31);
     }//Maybe in einer Hashmap speichern ? mit positionen oder wie dursuchen
     public void move(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
         if(feldhorizontal<Feld.length && feldvertikal<Feld[0].length) {
