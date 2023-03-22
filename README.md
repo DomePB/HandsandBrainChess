@@ -1,2 +1,8 @@
 # HandsandBrainChess
-Pawn Movement has to be fixed also no end field check i think
+TODO : Domain Rules
+
+pawn nur 1 move und kann rueckwaerts
+
+knight team check
+
+King kann eigene nehmen
