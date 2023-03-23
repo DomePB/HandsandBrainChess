@@ -168,6 +168,17 @@ public class Feld {
         return true;
     }
         else {//2 Moves von Start
+            if (Math.abs(altesfeldhorinzontal - feldhorizontal) == 2) {
+                if(Feld[altesfeldhorinzontal][altesfeldvertikal].getTeam() == "black" && altesfeldhorinzontal ==1){
+                    if(Feld[altesfeldhorinzontal+1][altesfeldvertikal] == null){
+                        if(Feld[feldhorizontal][feldvertikal]== null){
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+            }
             return false;
         }
     }
