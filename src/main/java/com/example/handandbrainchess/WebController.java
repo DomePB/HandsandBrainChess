@@ -1,11 +1,11 @@
 package com.example.handandbrainchess;
 
 import com.example.handandbrainchess.Service.ApplicationService;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -26,6 +26,7 @@ public class WebController {
         return "start";
     }
     @GetMapping("/move")
+    @SendTo("/endpoint/topic")
     public String move(Model m, @RequestParam("idrow") int idrow, @RequestParam("idcolumn") int idcolumn){
       //  System.out.println("Reihe: " + idrow + " Spalte: "+ idcolumn);
       //  m.addAttribute("Feld",service.getFeld());
