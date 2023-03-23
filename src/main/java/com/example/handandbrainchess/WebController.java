@@ -4,6 +4,7 @@ import com.example.handandbrainchess.Service.ApplicationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,7 +22,6 @@ public class WebController {
 
     @GetMapping("/")
     public String index(Model m){
-        service.init();
         m.addAttribute("Feld",service.getFeld());
         return "start";
     }
@@ -47,6 +47,12 @@ public class WebController {
             moveColumn1 = null;
             moveColumn2= null;
         }
-        return "start";
+        return "redirect:/";
+    }
+
+    @PostMapping("/")
+    public String init(){
+        service.init();
+        return "redirect:/";
     }
 }
