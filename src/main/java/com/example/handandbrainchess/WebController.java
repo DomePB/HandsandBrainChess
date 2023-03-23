@@ -27,8 +27,8 @@ public class WebController {
     }
     @GetMapping("/move")
     public String move(Model m, @RequestParam("idrow") int idrow, @RequestParam("idcolumn") int idcolumn){
-        System.out.println("Reihe: " + idrow + " Spalte: "+ idcolumn);
-        m.addAttribute("Feld",service.getFeld());
+      //  System.out.println("Reihe: " + idrow + " Spalte: "+ idcolumn);
+      //  m.addAttribute("Feld",service.getFeld());
         if(moveRow1 == null){
             moveRow1 = idrow;
         }
