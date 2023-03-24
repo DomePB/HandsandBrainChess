@@ -13,7 +13,7 @@ Hands and Brain Chess
     <tr th:each="row, i: ${Feld}">
         <td th:each="Figuren, j:${row}">
             <span th:switch="${Figuren}">
-            <a th:href="@{/move(idrow=${i.index},idcolumn=${j.index})}">
+            <a class="move" th:href="@{/move(idrow=${i.index},idcolumn=${j.index})}" >
                 <span th:case="null">
                     null
                 </span>
@@ -34,18 +34,37 @@ Hands and Brain Chess
     <button type="submit">Spiel aufsezten</button>
 </form>
 <script>
+    const clientId = localStorage.getItem('clientId') || Math.random().toString(36).substring(2);
+    localStorage.setItem('clientId',clientId);
 
     window.addEventListener('load', (e) => {
         const socket = new SockJS('/stomp-endpoint')
         const stompClient = Stomp.over(socket)
         stompClient.connect({}, (frame) => {
-            stompClient.subscribe('/topic/greetings', (greeting) => {
-                console.log('greetings: ' + greeting.body)
+            stompClient.subscribe('/topic/greetings', (senderId) => {
+                if(senderId.body != clientId){
+                    console.log(senderId.body)
+                    location.reload();
+                }
             });
-
-            stompClient.send('/app/hello', {}, JSON.stringify({name: 'Tammie'}))
+            Array.from(document.getElementsByClassName("move")).forEach((element)=> element.addEventListener('click',(e) =>{
+                console.log('move')
+                    stompClient.send('/app/hello', {},clientId)
+            }))
         });
-
+  /* window.addEventListener('load', (e) => {
+        const socket = new SockJS('/stomp-endpoint')
+        const stompClient = Stomp.over(socket)
+        stompClient.connect({}, (frame) => {
+            stompClient.subscribe('/topic/greetings', (greeting) => {
+                console.log('UPDATE')
+                location.reload();
+            });
+            Array.from(document.getElementsByClassName("move")).forEach((element)=> element.addEventListener('click',(e) =>{
+                console.log('move')
+                stompClient.send('/app/hello', {}, JSON.stringify({name: 'Tammie'}))
+            }))
+        });*/
 
     })
 </script>
