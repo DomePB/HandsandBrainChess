@@ -158,15 +158,13 @@ public class Feld {
               return false;
           }
             if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "white") {
-             if (Feld[feldhorizontal - 1][feldvertikal + 1].team == "black" ||
-                      Feld[feldhorizontal - 1][feldvertikal - 1].team == "black") {
+             if (Feld[feldhorizontal][feldvertikal ].team == "black") {
                  return true;
                }
 
             }
           if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "black") {
-             if (Feld[feldhorizontal ][feldvertikal + 1].team == "white" ||// null check muss noch gemacht werden
-                      Feld[feldhorizontal][feldvertikal - 1].team == "white") {// null check muss noch gemacht werden
+             if (Feld[feldhorizontal][feldvertikal].team == "white"){// null check muss noch gemacht werden
                  return true;
               }
          }
