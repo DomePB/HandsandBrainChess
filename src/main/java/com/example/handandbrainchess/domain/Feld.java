@@ -184,7 +184,7 @@ public class Feld {
                     return false;
                 }
                 if(Feld[altesfeldhorinzontal][altesfeldvertikal].getTeam() == "white" && altesfeldhorinzontal ==6){
-                    if(Feld[altesfeldhorinzontal+1][altesfeldvertikal] == null){
+                    if(Feld[altesfeldhorinzontal-1][altesfeldvertikal] == null){
                         if(Feld[feldhorizontal][feldvertikal]== null){
                             return true;
                         }
