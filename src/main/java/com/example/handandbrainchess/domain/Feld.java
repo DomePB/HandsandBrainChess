@@ -150,8 +150,13 @@ public class Feld {
     private boolean collisionCheckPawn(int altesfeldhorinzontal, int altesfeldvertikal, int feldhorizontal, int feldvertikal, String team) {
         if (Math.abs(altesfeldhorinzontal - feldhorizontal) == 1) {
           if (Feld[feldhorizontal][feldvertikal] == null) {
-             return true;
-           }
+              if(Feld[altesfeldhorinzontal][altesfeldvertikal].team == "white" && altesfeldhorinzontal > feldhorizontal) {
+                  return true;
+              } else if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "black" && altesfeldhorinzontal < feldhorizontal) {
+                  return true;
+              }
+              return false;
+          }
             if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "white") {
              if (Feld[feldhorizontal - 1][feldvertikal + 1].team == "black" ||
                       Feld[feldhorizontal - 1][feldvertikal - 1].team == "black") {
@@ -170,6 +175,15 @@ public class Feld {
         else {//2 Moves von Start
             if (Math.abs(altesfeldhorinzontal - feldhorizontal) == 2) {
                 if(Feld[altesfeldhorinzontal][altesfeldvertikal].getTeam() == "black" && altesfeldhorinzontal ==1){
+                    if(Feld[altesfeldhorinzontal+1][altesfeldvertikal] == null){
+                        if(Feld[feldhorizontal][feldvertikal]== null){
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                if(Feld[altesfeldhorinzontal][altesfeldvertikal].getTeam() == "white" && altesfeldhorinzontal ==6){
                     if(Feld[altesfeldhorinzontal+1][altesfeldvertikal] == null){
                         if(Feld[feldhorizontal][feldvertikal]== null){
                             return true;
