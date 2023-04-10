@@ -156,4 +156,17 @@ class FeldTest {
         assertThat(f.getFeld()[5][0].getType()).isEqualTo(Figur.PAWN);
         assertThat(f.getFeld()[3][0]).isNull();
     }
+    @Test
+    @DisplayName("White Pawn take")
+    void moveWPawn_7(){
+        Feld f = new Feld();
+        f.init();
+        f.move(6,0,4,0);
+        f.move(1,1,3,1);
+        //act
+        f.move(4,0,3,1);
+
+        assertThat(f.getFeld()[3][1].getTeam()).isEqualTo("white");
+        assertThat(f.getFeld()[4][0]).isNull();
+    }
 }
