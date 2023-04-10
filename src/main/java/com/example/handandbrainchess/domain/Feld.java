@@ -85,7 +85,10 @@ public class Feld {
             if (altesfeldhorinzontal < feldhorizontal){
                 for(int i = altesfeldhorinzontal+1; i <= feldhorizontal; i++){
                     if(Feld[i][altesfeldvertikal] != null){
-                        return false;
+                         if(!Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(Feld[i][altesfeldvertikal])){
+                             return true;
+                    }
+                         return false;
                     }
                 }
             } else if (altesfeldhorinzontal > feldhorizontal) {
