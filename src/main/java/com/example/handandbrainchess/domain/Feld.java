@@ -158,17 +158,17 @@ public class Feld {
               return false;
           }
             if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "white") {
-             if (Feld[feldhorizontal][feldvertikal ].team == "black") {
+             if (Feld[feldhorizontal][feldvertikal ].team == "black" && Math.abs(altesfeldvertikal-feldvertikal)==1) {
                  return true;
                }
 
             }
           if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "black") {
-             if (Feld[feldhorizontal][feldvertikal].team == "white"){// null check muss noch gemacht werden
+             if (Feld[feldhorizontal][feldvertikal].team == "white" && Math.abs(altesfeldvertikal-feldvertikal)==1){// null check muss noch gemacht werden
                  return true;
               }
          }
-        return true;
+        return false;
     }
         else {//2 Moves von Start
             if (Math.abs(altesfeldhorinzontal - feldhorizontal) == 2) {
