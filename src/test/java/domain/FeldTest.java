@@ -23,6 +23,8 @@ class FeldTest {
     void movebishop_1(){
         Feld f = new Feld();
         f.init();
+        f.move(1,1,2,1);
+        //act
         f.move(0,2,2,0);
 
         assertThat(f.getFeld()[2][0].getType()).isEqualTo(Figur.BISHOP);
@@ -33,6 +35,8 @@ class FeldTest {
     void movebishop_2(){
         Feld f = new Feld();
         f.init();
+        f.move(6,6,5,6);
+                //
         f.move(7,5,5,7);
 
         assertThat(f.getFeld()[5][7].getType()).isEqualTo(Figur.BISHOP);
