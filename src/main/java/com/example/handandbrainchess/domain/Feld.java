@@ -69,13 +69,13 @@ public class Feld {
     private boolean collisionCheckROOK(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
         if(altesfeldhorinzontal == feldhorizontal){
             if(altesfeldvertikal < feldvertikal){
-                for(int i = altesfeldvertikal+1; i <= feldvertikal; i++){
+                for(int i = altesfeldvertikal+1; i < feldvertikal; i++){
                     if(Feld[feldhorizontal][i] != null){
                         return false;
                     }
                 }
             } else if (altesfeldvertikal > feldvertikal) {
-                for(int i = altesfeldvertikal-1; i == feldvertikal; i--){
+                for(int i = altesfeldvertikal-1; i > feldvertikal; i--){
                     if(Feld[feldhorizontal][i] != null){
                         return false;
                     }
@@ -83,11 +83,8 @@ public class Feld {
             }
         } else if (altesfeldvertikal == feldvertikal){
             if (altesfeldhorinzontal < feldhorizontal){
-                for(int i = altesfeldhorinzontal+1; i <= feldhorizontal; i++){
+                for(int i = altesfeldhorinzontal+1; i < feldhorizontal; i++){
                     if(Feld[i][altesfeldvertikal] != null){
-                         if(!Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(Feld[i][altesfeldvertikal])){
-                             return true;
-                    }
                          return false;
                     }
                 }
