@@ -8,16 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 class FeldTest {
 
-    @Test
-    @DisplayName("Move Rook to 5,0")
-    void moverook_1(){
-        Feld f = new Feld();
-        f.init();
-        f.move(0,0,5,0);
 
-        assertThat(f.getFeld()[5][0].getType()).isEqualTo(Figur.ROOK);
-        assertThat(f.getFeld()[0][0]).isNull();
-    }
     @Test
     @DisplayName("Move Bishop to 2,0")
     void movebishop_1(){
@@ -80,6 +71,7 @@ class FeldTest {
         assertThat(f.getFeld()[0][4]).isNull();
 
     }
+    // PAWNS Tests
     @Test
     @DisplayName("Move Pawn 2 to 3,1 then to 4,1")
     void movePawn_1(){
@@ -168,5 +160,20 @@ class FeldTest {
 
         assertThat(f.getFeld()[3][1].getTeam()).isEqualTo("white");
         assertThat(f.getFeld()[4][0]).isNull();
+    }
+    //ROOK TESTS
+    @Test
+    @DisplayName("Move Rook to 4,0")
+    void moverook_1(){
+        Feld f = new Feld();
+        f.init();
+        f.move(1,0,3,0);
+        f.move(3,0,4,0);
+        f.move(4,0,5,0);
+
+        f.move(0,0,4,0);
+
+        assertThat(f.getFeld()[4][0].getType()).isEqualTo(Figur.ROOK);
+        assertThat(f.getFeld()[0][0]).isNull();
     }
 }

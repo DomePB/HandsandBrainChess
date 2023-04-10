@@ -83,7 +83,7 @@ public class Feld {
             }
         } else if (altesfeldvertikal == feldvertikal){
             if (altesfeldhorinzontal < feldhorizontal){
-                for(int i = altesfeldhorinzontal+1; i == feldhorizontal; i++){
+                for(int i = altesfeldhorinzontal+1; i <= feldhorizontal; i++){
                     if(Feld[i][altesfeldvertikal] != null){
                         return false;
                     }
