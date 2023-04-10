@@ -129,4 +129,31 @@ class FeldTest {
         assertThat(f.getFeld()[5][0].getTeam()).isEqualTo("black");
         assertThat(f.getFeld()[6][0].getType()).isEqualTo(Figur.PAWN);
     }
+    @Test
+    @DisplayName("White Pawn 2 forward something in the way")
+    void moveWPawn_5(){
+        Feld f = new Feld();
+        f.init();
+        f.move(1,0,2,0);
+        f.move(2,0,3,0);
+        f.move(3,0,4,0);
+        f.move(4,0,5,0);
+        //act
+        f.move(6,0,4,0);
+
+        assertThat(f.getFeld()[5][0].getTeam()).isEqualTo("black");
+        assertThat(f.getFeld()[6][0].getType()).isEqualTo(Figur.PAWN);
+    }
+    @Test
+    @DisplayName("White Pawn 2 forward from not the start")
+    void moveWPawn_6(){
+        Feld f = new Feld();
+        f.init();
+        f.move(6,0,5,0);
+        //act
+        f.move(5,0,3,0);
+
+        assertThat(f.getFeld()[5][0].getType()).isEqualTo(Figur.PAWN);
+        assertThat(f.getFeld()[3][0]).isNull();
+    }
 }
