@@ -42,104 +42,104 @@ public class Feld {
         Feld[6][6] = new Figuren(Figur.PAWN,"white",true,30);
         Feld[6][7] = new Figuren(Figur.PAWN,"white",true,31);
     }//Maybe in einer Hashmap speichern ? mit positionen oder wie dursuchen
-    public void move(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
-        if(feldhorizontal<Feld.length && feldvertikal<Feld[0].length) {
-            if(checkLegalmove(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal)){
-                Feld[feldhorizontal][feldvertikal] = Feld[altesfeldhorinzontal][altesfeldvertikal];
-                Feld[altesfeldhorinzontal][altesfeldvertikal] = null;
+    public void move(int altesfeldReihe, int altesfeldSpalte,int neuesFeldReihe, int neuesFeldSpalte){
+        if(neuesFeldReihe<Feld.length && neuesFeldSpalte<Feld[0].length) {
+            if(checkLegalmove(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)){
+                Feld[neuesFeldReihe][neuesFeldSpalte] = Feld[altesfeldReihe][altesfeldSpalte];
+                Feld[altesfeldReihe][altesfeldSpalte] = null;
             }
 
         }
     }
 
-    public boolean checkLegalmove(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
-        switch(Feld[altesfeldhorinzontal][altesfeldvertikal].getType()){
-            case ROOK : if(collisionCheckROOK(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal)) return true; else break; //altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal
-            case BISHOP: if(collisionCheckBISHOP(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal)) return true; else break;
-            case KNIGHT: if(Math.abs(altesfeldhorinzontal-feldhorizontal) ==2 && Math.abs(altesfeldvertikal-feldvertikal) == 1 || Math.abs(altesfeldhorinzontal -feldhorizontal) ==1 && Math.abs(altesfeldvertikal-feldvertikal)==2)return true;
-            case QUEEN: if(altesfeldhorinzontal == feldhorizontal  || altesfeldvertikal == feldvertikal) {if(collisionCheckROOK(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal)) return true; else break;}
-            else if (Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)) {if(collisionCheckBISHOP(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal))return true; else break;} else break;
-            case KING: if(Math.abs(altesfeldhorinzontal-feldhorizontal) <=1 && Math.abs(altesfeldvertikal-feldvertikal) <=1 ) return true; else break;
-            case PAWN: if(collisionCheckPawn(altesfeldhorinzontal,altesfeldvertikal,feldhorizontal,feldvertikal,Feld[altesfeldhorinzontal][altesfeldvertikal].getTeam())){return true;} else break; //Pawn kann noch gerade aus schlagen und nicht zur Seite
+    public boolean checkLegalmove(int altesfeldReihe, int altesfeldSpalte,int neuesFeldReihe, int neuesFeldSpalte){
+        switch(Feld[altesfeldReihe][altesfeldSpalte].getType()){
+            case ROOK : if(collisionCheckROOK(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)) return true; else break; //altesfeldReihe == neuesFeldReihe  || altesfeldSpalte == neuesFeldSpalte
+            case BISHOP: if(collisionCheckBISHOP(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)) return true; else break;
+            case KNIGHT: if(Math.abs(altesfeldReihe-neuesFeldReihe) ==2 && Math.abs(altesfeldSpalte-neuesFeldSpalte) == 1 || Math.abs(altesfeldReihe -neuesFeldReihe) ==1 && Math.abs(altesfeldSpalte-neuesFeldSpalte)==2)return true;
+            case QUEEN: if(altesfeldReihe == neuesFeldReihe  || altesfeldSpalte == neuesFeldSpalte) {if(collisionCheckROOK(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)) return true; else break;}
+            else if (Math.abs(altesfeldReihe - neuesFeldReihe) == Math.abs(altesfeldSpalte - neuesFeldSpalte)) {if(collisionCheckBISHOP(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte))return true; else break;} else break;
+            case KING: if(Math.abs(altesfeldReihe-neuesFeldReihe) <=1 && Math.abs(altesfeldSpalte-neuesFeldSpalte) <=1 ) return true; else break;
+            case PAWN: if(collisionCheckPawn(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)){return true;} else break; //Pawn kann noch gerade aus schlagen und nicht zur Seite
             default : return false;
 
         }
         return false;
     }
-    private boolean collisionCheckROOK(int altesfeldhorinzontal, int altesfeldvertikal,int feldhorizontal, int feldvertikal){
-        if(altesfeldhorinzontal == feldhorizontal){
-            if(altesfeldvertikal < feldvertikal){
-                for(int i = altesfeldvertikal+1; i < feldvertikal; i++){
-                    if(Feld[feldhorizontal][i] != null){
+    private boolean collisionCheckROOK(int altesfeldReihe, int altesfeldSpalte,int neuesFeldReihe, int neuesFeldSpalte){
+        if(altesfeldReihe == neuesFeldReihe){
+            if(altesfeldSpalte < neuesFeldSpalte){
+                for(int i = altesfeldSpalte+1; i < neuesFeldSpalte; i++){
+                    if(Feld[neuesFeldReihe][i] != null){
                         return false;
                     }
                 }
-            } else if (altesfeldvertikal > feldvertikal) {
-                for(int i = altesfeldvertikal-1; i > feldvertikal; i--){
-                    if(Feld[feldhorizontal][i] != null){
+            } else if (altesfeldSpalte > neuesFeldSpalte) {
+                for(int i = altesfeldSpalte-1; i > neuesFeldSpalte; i--){
+                    if(Feld[neuesFeldReihe][i] != null){
                         return false;
                     }
                 }
             }
-        } else if (altesfeldvertikal == feldvertikal){
-            if (altesfeldhorinzontal < feldhorizontal){
-                for(int i = altesfeldhorinzontal+1; i < feldhorizontal; i++){
-                    if(Feld[i][altesfeldvertikal] != null){
+        } else if (altesfeldSpalte == neuesFeldSpalte){
+            if (altesfeldReihe < neuesFeldReihe){
+                for(int i = altesfeldReihe+1; i < neuesFeldReihe; i++){
+                    if(Feld[i][altesfeldSpalte] != null){
                          return false;
                     }
                 }
-            } else if (altesfeldhorinzontal > feldhorizontal) {
-                for(int i = altesfeldhorinzontal-1; i > feldhorizontal; i--){
-                    if(Feld[i][altesfeldvertikal] != null){
+            } else if (altesfeldReihe > neuesFeldReihe) {
+                for(int i = altesfeldReihe-1; i > neuesFeldReihe; i--){
+                    if(Feld[i][altesfeldSpalte] != null){
                         return false;
                     }
                 }
             }
         }
-        if(Feld[feldhorizontal][feldvertikal]!= null){
-            if(Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(Feld[feldhorizontal][feldvertikal])){
+        if(Feld[neuesFeldReihe][neuesFeldSpalte]!= null){
+            if(Feld[altesfeldReihe][altesfeldSpalte].EqualTeam(Feld[neuesFeldReihe][neuesFeldSpalte])){
                 return false;
             }
         }
         return true;
     }
-    private boolean collisionCheckBISHOP(int altesfeldhorinzontal, int altesfeldvertikal, int feldhorizontal, int feldvertikal){
-        if(Math.abs(altesfeldhorinzontal - feldhorizontal) == Math.abs(altesfeldvertikal - feldvertikal)){
-            if (altesfeldhorinzontal < feldhorizontal){
-                if (altesfeldvertikal < feldvertikal){
-                    for(int i = 1; altesfeldhorinzontal+i< feldhorizontal; i++){
-                        if (Feld[altesfeldhorinzontal+i][altesfeldvertikal+i] != null){
+    private boolean collisionCheckBISHOP(int altesFeldReihe, int altesFeldSpalte, int neuesFeldReihe, int neuesFeldSpalte){
+        if(Math.abs(altesFeldReihe - neuesFeldReihe) == Math.abs(altesFeldSpalte - neuesFeldSpalte)){
+            if (altesFeldReihe < neuesFeldReihe){
+                if (altesFeldSpalte < neuesFeldSpalte){
+                    for(int i = 1; altesFeldReihe+i< neuesFeldReihe; i++){
+                        if (Feld[altesFeldReihe+i][altesFeldSpalte+i] != null){
                             return false;
                         }
                     }
                 }
-                else { //altesfeldvertikal > feldvertikal
-                    for(int i = 1; altesfeldhorinzontal+i< feldhorizontal; i++){
-                        if (Feld[altesfeldhorinzontal+i][altesfeldvertikal-i] != null){
+                else { //altesFeldSpalte > neuesFeldSpalte
+                    for(int i = 1; altesFeldReihe+i< neuesFeldReihe; i++){
+                        if (Feld[altesFeldReihe+i][altesFeldSpalte-i] != null){
                             return false;
                         }
                     }
                 }
-            } else { //altesfeldhorinzontal > feldhorizontal
-                if (altesfeldvertikal < feldvertikal) {
-                    for (int i =  1; altesfeldhorinzontal-i > feldhorizontal; i++) {
-                        if (Feld[altesfeldhorinzontal - i][altesfeldvertikal + i] != null) {
+            } else { //altesFeldReihe > neuesFeldReihe
+                if (altesFeldSpalte < neuesFeldSpalte) {
+                    for (int i =  1; altesFeldReihe-i > neuesFeldReihe; i++) {
+                        if (Feld[altesFeldReihe - i][altesFeldSpalte + i] != null) {
                             return false;
                         }
                     }
-                }else {//altesfeldvertikal > feldvertikal
-                    if (altesfeldvertikal > feldvertikal) {
-                        for (int i = 1; altesfeldhorinzontal-i > feldhorizontal; i++) {
-                            if (Feld[altesfeldhorinzontal - i][altesfeldvertikal - i] != null) {
+                }else {//altesFeldSpalte > neuesFeldSpalte
+                    if (altesFeldSpalte > neuesFeldSpalte) {
+                        for (int i = 1; altesFeldReihe-i >= neuesFeldReihe; i++) {
+                            if (Feld[altesFeldReihe - i][altesFeldSpalte - i] != null) {
                                 return false;
                             }
                         }
                     }
                 }
             }
-            if(Feld[feldhorizontal][feldvertikal]!= null) {
-                if (Feld[altesfeldhorinzontal][altesfeldvertikal].EqualTeam(
-                        Feld[feldhorizontal][feldvertikal])) {
+            if(Feld[neuesFeldReihe][neuesFeldSpalte]!= null) {
+                if (Feld[altesFeldReihe][altesFeldSpalte].EqualTeam(
+                        Feld[neuesFeldReihe][neuesFeldSpalte])) {
                     return false;
                 }
             }
@@ -147,43 +147,43 @@ public class Feld {
         }
        return false;
     }
-    private boolean collisionCheckPawn(int altesfeldhorinzontal, int altesfeldvertikal, int feldhorizontal, int feldvertikal, String team) {
-        if (Math.abs(altesfeldhorinzontal - feldhorizontal) == 1) {
-          if (Feld[feldhorizontal][feldvertikal] == null) {
-              if(Feld[altesfeldhorinzontal][altesfeldvertikal].team == "white" && altesfeldhorinzontal > feldhorizontal) {
+    private boolean collisionCheckPawn(int altesFeldReihe, int altesFeldSpalte, int neuesFeldReihe, int neuesFeldSpalte) {
+        if (Math.abs(altesFeldReihe - neuesFeldReihe) == 1) {
+          if (Feld[neuesFeldReihe][neuesFeldSpalte] == null) {
+              if(Feld[altesFeldReihe][altesFeldSpalte].team == "white" && altesFeldReihe > neuesFeldReihe) {
                   return true;
-              } else if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "black" && altesfeldhorinzontal < feldhorizontal) {
+              } else if (Feld[altesFeldReihe][altesFeldSpalte].team == "black" && altesFeldReihe < neuesFeldReihe) {
                   return true;
               }
               return false;
           }
-            if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "white") {
-             if (Feld[feldhorizontal][feldvertikal ].team == "black" && Math.abs(altesfeldvertikal-feldvertikal)==1) {
+            if (Feld[altesFeldReihe][altesFeldSpalte].team == "white") {
+             if (Feld[neuesFeldReihe][neuesFeldSpalte ].team == "black" && Math.abs(altesFeldSpalte-neuesFeldSpalte)==1) {
                  return true;
                }
 
             }
-          if (Feld[altesfeldhorinzontal][altesfeldvertikal].team == "black") {
-             if (Feld[feldhorizontal][feldvertikal].team == "white" && Math.abs(altesfeldvertikal-feldvertikal)==1){// null check muss noch gemacht werden
+          if (Feld[altesFeldReihe][altesFeldSpalte].team == "black") {
+             if (Feld[neuesFeldReihe][neuesFeldSpalte].team == "white" && Math.abs(altesFeldSpalte-neuesFeldSpalte)==1){// null check muss noch gemacht werden
                  return true;
               }
          }
         return false;
     }
         else {//2 Moves von Start
-            if (Math.abs(altesfeldhorinzontal - feldhorizontal) == 2) {
-                if(Feld[altesfeldhorinzontal][altesfeldvertikal].getTeam() == "black" && altesfeldhorinzontal ==1){
-                    if(Feld[altesfeldhorinzontal+1][altesfeldvertikal] == null){
-                        if(Feld[feldhorizontal][feldvertikal]== null){
+            if (Math.abs(altesFeldReihe - neuesFeldReihe) == 2) {
+                if(Feld[altesFeldReihe][altesFeldSpalte].getTeam() == "black" && altesFeldReihe ==1){
+                    if(Feld[altesFeldReihe+1][altesFeldSpalte] == null){
+                        if(Feld[neuesFeldReihe][neuesFeldSpalte]== null){
                             return true;
                         }
                         return false;
                     }
                     return false;
                 }
-                if(Feld[altesfeldhorinzontal][altesfeldvertikal].getTeam() == "white" && altesfeldhorinzontal ==6){
-                    if(Feld[altesfeldhorinzontal-1][altesfeldvertikal] == null){
-                        if(Feld[feldhorizontal][feldvertikal]== null){
+                if(Feld[altesFeldReihe][altesFeldSpalte].getTeam() == "white" && altesFeldReihe ==6){
+                    if(Feld[altesFeldReihe-1][altesFeldSpalte] == null){
+                        if(Feld[neuesFeldReihe][neuesFeldSpalte]== null){
                             return true;
                         }
                         return false;
