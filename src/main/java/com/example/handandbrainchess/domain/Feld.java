@@ -56,7 +56,7 @@ public class Feld {
         switch(Feld[altesfeldReihe][altesfeldSpalte].getType()){
             case ROOK : if(collisionCheckROOK(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)) return true; else break; //altesfeldReihe == neuesFeldReihe  || altesfeldSpalte == neuesFeldSpalte
             case BISHOP: if(collisionCheckBISHOP(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)) return true; else break;
-            case KNIGHT: if(Math.abs(altesfeldReihe-neuesFeldReihe) ==2 && Math.abs(altesfeldSpalte-neuesFeldSpalte) == 1 || Math.abs(altesfeldReihe -neuesFeldReihe) ==1 && Math.abs(altesfeldSpalte-neuesFeldSpalte)==2)return true;
+            case KNIGHT: if(collisionCheckKnight(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte))return true; else break;
             case QUEEN: if(altesfeldReihe == neuesFeldReihe  || altesfeldSpalte == neuesFeldSpalte) {if(collisionCheckROOK(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)) return true; else break;}
             else if (Math.abs(altesfeldReihe - neuesFeldReihe) == Math.abs(altesfeldSpalte - neuesFeldSpalte)) {if(collisionCheckBISHOP(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte))return true; else break;} else break;
             case KING: if(Math.abs(altesfeldReihe-neuesFeldReihe) <=1 && Math.abs(altesfeldSpalte-neuesFeldSpalte) <=1 ) return true; else break;
@@ -193,6 +193,19 @@ public class Feld {
             }
             return false;
         }
+    }
+
+    public boolean collisionCheckKnight(int altesFeldReihe, int altesFeldSpalte, int neuesFeldReihe, int neuesFeldSpalte){
+        if(Math.abs(altesFeldReihe-neuesFeldReihe) ==2 && Math.abs(altesFeldSpalte-neuesFeldSpalte) == 1 || Math.abs(altesFeldReihe -neuesFeldReihe) ==1 && Math.abs(altesFeldSpalte-neuesFeldSpalte)==2){
+            if(Feld[neuesFeldReihe][neuesFeldSpalte]==null){
+                return true;
+            }
+            if(Feld[altesFeldReihe][altesFeldSpalte].EqualTeam(Feld[neuesFeldReihe][neuesFeldSpalte])){
+                return false;
+            }
+            return true;
+        }
+       return false;
     }
 
     public  Figuren getPosition(int row, int column) {

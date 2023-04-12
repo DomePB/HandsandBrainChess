@@ -8,18 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 class FeldTest {
 
-    @Test
-    @DisplayName("Move Knight to 2,0 then to 3,2")
-    void moveKnight_1(){
-        Feld f = new Feld();
-        f.init();
-        f.move(0,1,2,0);
-        f.move(2,0,3,2);
 
-        assertThat(f.getFeld()[3][2].getType()).isEqualTo(Figur.KNIGHT);
-        assertThat(f.getFeld()[0][1]).isNull();
-
-    }
     @Test
     @DisplayName("Move Queen to 3,3 then to 4,2")
     void moveQueen_1(){
@@ -256,5 +245,32 @@ class FeldTest {
 
         assertThat(f.getFeld()[5][7].getType()).isEqualTo(Figur.BISHOP);
         assertThat(f.getFeld()[0][2]).isNull();
+    }
+    /*
+     Knight
+     */
+    @Test
+    @DisplayName("Move Knight to 2,0 then to 3,2")
+    void moveKnight_1(){
+        Feld f = new Feld();
+        f.init();
+        f.move(0,1,2,0);
+        f.move(2,0,3,2);
+
+        assertThat(f.getFeld()[3][2].getType()).isEqualTo(Figur.KNIGHT);
+        assertThat(f.getFeld()[0][1]).isNull();
+
+    }
+    @Test
+    @DisplayName("Move Knight onto own piece")
+    void moveKnight_2(){
+        Feld f = new Feld();
+        f.init();
+        f.move(6,5,6,4);
+        //
+        f.move(7,6,6,4);
+
+        assertThat(f.getFeld()[6][4].getType()).isEqualTo(Figur.PAWN);
+        assertThat(f.getFeld()[0][2]).isNotNull();
     }
 }
