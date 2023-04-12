@@ -59,7 +59,7 @@ public class Feld {
             case KNIGHT: if(collisionCheckKnight(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte))return true; else break;
             case QUEEN: if(altesfeldReihe == neuesFeldReihe  || altesfeldSpalte == neuesFeldSpalte) {if(collisionCheckROOK(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)) return true; else break;}
             else if (Math.abs(altesfeldReihe - neuesFeldReihe) == Math.abs(altesfeldSpalte - neuesFeldSpalte)) {if(collisionCheckBISHOP(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte))return true; else break;} else break;
-            case KING: if(Math.abs(altesfeldReihe-neuesFeldReihe) <=1 && Math.abs(altesfeldSpalte-neuesFeldSpalte) <=1 ) return true; else break;
+            case KING: if(collisionCheckKing(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)) return true; else break;
             case PAWN: if(collisionCheckPawn(altesfeldReihe,altesfeldSpalte,neuesFeldReihe,neuesFeldSpalte)){return true;} else break; //Pawn kann noch gerade aus schlagen und nicht zur Seite
             default : return false;
 
@@ -195,7 +195,7 @@ public class Feld {
         }
     }
 
-    public boolean collisionCheckKnight(int altesFeldReihe, int altesFeldSpalte, int neuesFeldReihe, int neuesFeldSpalte){
+    private boolean collisionCheckKnight(int altesFeldReihe, int altesFeldSpalte, int neuesFeldReihe, int neuesFeldSpalte){
         if(Math.abs(altesFeldReihe-neuesFeldReihe) ==2 && Math.abs(altesFeldSpalte-neuesFeldSpalte) == 1 || Math.abs(altesFeldReihe -neuesFeldReihe) ==1 && Math.abs(altesFeldSpalte-neuesFeldSpalte)==2){
             if(Feld[neuesFeldReihe][neuesFeldSpalte]==null){
                 return true;
@@ -206,6 +206,18 @@ public class Feld {
             return true;
         }
        return false;
+    }
+    private boolean collisionCheckKing(int altesFeldReihe, int altesFeldSpalte, int neuesFeldReihe, int neuesFeldSpalte){
+        if(Math.abs(altesFeldReihe-neuesFeldReihe) <=1 && Math.abs(altesFeldSpalte-neuesFeldSpalte) <=1) {
+            if(Feld[neuesFeldReihe][neuesFeldSpalte]==null){
+                return true;
+            }
+            if(Feld[altesFeldReihe][altesFeldSpalte].EqualTeam(Feld[neuesFeldReihe][neuesFeldSpalte])){
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     public  Figuren getPosition(int row, int column) {

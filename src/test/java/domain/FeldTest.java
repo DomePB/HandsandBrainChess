@@ -22,19 +22,7 @@ class FeldTest {
         assertThat(f.getFeld()[0][3]).isNull();
 
     }
-    @Test
-    @DisplayName("Move King to 1,3 then to 2,3")
-    void moveKing_1(){
-        Feld f = new Feld();
-        f.init();
-        f.move(0,4,1,3);
-        f.move(1,3,2,3);
 
-
-        assertThat(f.getFeld()[2][3].getType()).isEqualTo(Figur.KING);
-        assertThat(f.getFeld()[0][4]).isNull();
-
-    }
     /*
      PAWNS Tests
      */
@@ -272,5 +260,24 @@ class FeldTest {
 
         assertThat(f.getFeld()[6][4].getType()).isEqualTo(Figur.PAWN);
         assertThat(f.getFeld()[0][2]).isNotNull();
+    }
+
+    /*
+     KING
+     */
+    @Test
+    @DisplayName("Move King to 1,3 then to 2,2")
+    void moveKing_1(){
+        Feld f = new Feld();
+        f.init();
+
+        f.move(1,3,2,3);
+        f.move(0,4,1,3);
+
+        f.move(1,3,2,2);
+
+        assertThat(f.getFeld()[2][2].getType()).isEqualTo(Figur.KING);
+        assertThat(f.getFeld()[0][4]).isNull();
+
     }
 }
