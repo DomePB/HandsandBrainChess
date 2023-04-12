@@ -8,31 +8,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 class FeldTest {
 
-
-    @Test
-    @DisplayName("Move Bishop to 2,0")
-    void movebishop_1(){
-        Feld f = new Feld();
-        f.init();
-        f.move(1,1,2,1);
-        //act
-        f.move(0,2,2,0);
-
-        assertThat(f.getFeld()[2][0].getType()).isEqualTo(Figur.BISHOP);
-        assertThat(f.getFeld()[0][2]).isNull();
-    }
-    @Test
-    @DisplayName("Move white Bishop to 5,7")
-    void movebishop_2(){
-        Feld f = new Feld();
-        f.init();
-        f.move(6,6,5,6);
-                //
-        f.move(7,5,5,7);
-
-        assertThat(f.getFeld()[5][7].getType()).isEqualTo(Figur.BISHOP);
-        assertThat(f.getFeld()[7][5]).isNull();
-    }
     @Test
     @DisplayName("Move Knight to 2,0 then to 3,2")
     void moveKnight_1(){
@@ -71,7 +46,9 @@ class FeldTest {
         assertThat(f.getFeld()[0][4]).isNull();
 
     }
-    // PAWNS Tests
+    /*
+     PAWNS Tests
+     */
     @Test
     @DisplayName("Move Pawn 2 to 3,1 then to 4,1")
     void movePawn_1(){
@@ -161,7 +138,9 @@ class FeldTest {
         assertThat(f.getFeld()[3][1].getTeam()).isEqualTo("white");
         assertThat(f.getFeld()[4][0]).isNull();
     }
-    //ROOK TESTS
+    /*
+    ROOK TESTS
+     */
     @Test
     @DisplayName("Move Rook to 4,0")
     void moverook_1(){
@@ -226,4 +205,45 @@ class FeldTest {
         assertThat(f.getFeld()[0][0]).isNull();
         assertThat(f.getFeld()[7][2]).isNull();
     }
+
+    /*
+    BISHOP TESTS
+     */
+    @Test
+    @DisplayName("Move Bishop to 2,0")
+    void movebishop_1(){
+        Feld f = new Feld();
+        f.init();
+        f.move(1,1,2,1);
+        //act
+        f.move(0,2,2,0);
+
+        assertThat(f.getFeld()[2][0].getType()).isEqualTo(Figur.BISHOP);
+        assertThat(f.getFeld()[0][2]).isNull();
+    }
+    @Test
+    @DisplayName("Move white Bishop to 5,7")
+    void movebishop_2(){
+        Feld f = new Feld();
+        f.init();
+        f.move(6,6,5,6);
+        //
+        f.move(7,5,5,7);
+
+        assertThat(f.getFeld()[5][7].getType()).isEqualTo(Figur.BISHOP);
+        assertThat(f.getFeld()[7][5]).isNull();
+    }
+    @Test
+    @DisplayName("Move white Bishop 7,5 to 2,0")
+    void movebishop_3(){
+        Feld f = new Feld();
+        f.init();
+        f.move(6,4,4,4);
+        //
+        f.move(7,5,2,0);
+
+        assertThat(f.getFeld()[2][0].getType()).isEqualTo(Figur.BISHOP);
+        assertThat(f.getFeld()[7][5]).isNull();
+    }
+
 }
