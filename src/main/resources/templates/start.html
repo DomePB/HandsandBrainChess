@@ -11,7 +11,7 @@
 Hands and Brain Chess
 <table class="table table-striped table-striped-columns">
     <tr th:each="row, i: ${Feld}">
-        <td th:each="Figuren, j:${row}">
+        <td th:each="Figuren, j:${row}" th:classappend="${i.index%2==0 &&j.index%2 ==0 || i.index %2==1 && j.index%2==1} ? table-default :table-dark">
             <span th:switch="${Figuren}">
             <a class="move" th:href="@{/move(idrow=${i.index},idcolumn=${j.index})}" >
                 <span th:case="null">
