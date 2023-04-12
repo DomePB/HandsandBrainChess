@@ -206,4 +206,24 @@ class FeldTest {
         assertThat(f.getFeld()[6][0].getType()).isEqualTo(Figur.ROOK);
         assertThat(f.getFeld()[0][0]).isNull();
     }
+    @Test
+    @DisplayName("Move Rook to 6,0 TAKE Backwards stuff at 2,0")
+    void moverook_4(){ //NOT WORKING PROBABLY BECAUSE OF BISHOP
+        Feld f = new Feld();
+        f.init();
+        f.move(1,0,3,0);
+        f.move(3,0,4,0);
+        f.move(4,0,5,0);
+        f.move(5,0,6,1);
+        f.move(6,4,4,4);
+
+
+        f.move(0,0,6,0);
+        f.move(7,5,2,0);
+        f.move(6,0,2,0);
+
+        assertThat(f.getFeld()[2][0].getType()).isEqualTo(Figur.ROOK);
+        assertThat(f.getFeld()[0][0]).isNull();
+        assertThat(f.getFeld()[7][2]).isNull();
+    }
 }
