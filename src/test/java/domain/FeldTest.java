@@ -245,5 +245,16 @@ class FeldTest {
         assertThat(f.getFeld()[2][0].getType()).isEqualTo(Figur.BISHOP);
         assertThat(f.getFeld()[7][5]).isNull();
     }
+    @Test
+    @DisplayName("Move Black Bishop 0,2 to 5,7")
+    void movebishop_4(){
+        Feld f = new Feld();
+        f.init();
+        f.move(1,3,2,3);
+        //
+        f.move(0,2,5,7);
 
+        assertThat(f.getFeld()[5][7].getType()).isEqualTo(Figur.BISHOP);
+        assertThat(f.getFeld()[0][2]).isNull();
+    }
 }
