@@ -14,12 +14,65 @@ Hands and Brain Chess
         <td th:each="Figuren, j:${row}" th:classappend="${i.index%2==0 &&j.index%2 ==0 || i.index %2==1 && j.index%2==1} ? table-default :table-dark">
             <span th:switch="${Figuren}">
             <a class="move" th:href="@{/move(idrow=${i.index},idcolumn=${j.index})}" >
-                <span th:case="null">
-                    null
+                <span style="width: 150px; height: 150px; display:inline-block;" th:case="null">
+                  <img th:src="@{/leeresFeld.png}" alt="null" width="150" height="150">
                 </span>
                 <span th:case="*">
-                    <span th:text="${Figuren.getType().toString()+ Figuren.getTeam()}">
-                        test
+                    <span  style="width: 150px; height: 150px; display:inline-block;">
+                        <span th:switch="${Figuren.getType()}">
+                            <span th:case="${T(com.example.handandbrainchess.domain.Figur).ROOK}">
+                                <span th:if="${Figuren.getTeam() =='black'}">
+                                       <img th:src="@{/blackrook.png}" alt="blackRook" width="150" height="150">
+                                </span>
+                                 <span th:if="${Figuren.getTeam() =='white'}">
+                                       <img th:src="@{/whiterook.png}" alt="whiteRook" width="150" height="150">
+                                </span>
+                            </span>
+                             <span th:case="${T(com.example.handandbrainchess.domain.Figur).KNIGHT}"> <span th:if="${Figuren.getTeam() =='black'}">
+                                       <img th:src="@{/blackknight.png}" alt="blackRook" width="150" height="150">
+                                </span>
+                                 <span th:if="${Figuren.getTeam() =='white'}">
+                                       <img th:src="@{/whiteknight.png}" alt="whiteRook" width="150" height="150">
+                                </span>
+                            </span>
+                             <span th:case="${T(com.example.handandbrainchess.domain.Figur).BISHOP}">
+                                 <span th:if="${Figuren.getTeam() =='black'}">
+                                       <img th:src="@{/blackbishop.png}" alt="blackRook" width="150" height="150">
+                                </span>
+                                 <span th:if="${Figuren.getTeam() =='white'}">
+                                       <img th:src="@{/whitebishop.png}" alt="whiteRook" width="150" height="150">
+                                </span>
+                            </span>
+                             <span th:case="${T(com.example.handandbrainchess.domain.Figur).KING}">
+                                 <span th:if="${Figuren.getTeam() =='black'}">
+                                       <img th:src="@{/blackking.png}" alt="blackRook" width="150" height="150">
+                                </span>
+                                 <span th:if="${Figuren.getTeam() =='white'}">
+                                       <img th:src="@{/whiteking.png}" alt="whiteRook" width="150" height="150">
+                                </span>
+                            </span>
+                             <span th:case="${T(com.example.handandbrainchess.domain.Figur).QUEEN}">
+                                  <span th:if="${Figuren.getTeam() =='black'}">
+                                       <img th:src="@{/blackqueen.png}" alt="blackRook" width="150" height="150">
+                                </span>
+                                 <span th:if="${Figuren.getTeam() =='white'}">
+                                       <img th:src="@{/whitequeen.png}" alt="whiteRook" width="150" height="150">
+                                </span>
+                            </span>
+                             <span th:case="${T(com.example.handandbrainchess.domain.Figur).PAWN}">
+                                 <span th:if="${Figuren.getTeam() =='black'}">
+                                       <img th:src="@{/blackpawn.png}" alt="blackRook" width="150" height="150">
+                                </span>
+                                 <span th:if="${Figuren.getTeam() =='white'}">
+                                       <img th:src="@{/whitepawn.png}" alt="whiteRook" width="150" height="150">
+                                </span>
+                            </span>
+                              <span th:case="*">
+                                        test
+                              </span>
+
+                        </span>
+
                     </span>
 
                 </span>
