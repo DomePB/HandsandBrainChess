@@ -9,6 +9,7 @@
 </head>
 <body>
 Hands and Brain Chess
+<div style="margin: auto;width: 100%; max-width: 1200px;">
 <table class="table table-striped table-striped-columns">
     <tr th:each="row, i: ${Feld}">
         <td th:each="Figuren, j:${row}" th:classappend="${i.index%2==0 &&j.index%2 ==0 || i.index %2==1 && j.index%2==1} ? table-default :table-dark">
@@ -81,6 +82,7 @@ Hands and Brain Chess
         </td>
     </tr>
 </table>
+</div>
 <form th:action="@{/}" method="post">
     <button type="submit">Spiel aufsezten</button>
 </form>
